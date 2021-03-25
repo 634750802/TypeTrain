@@ -34,7 +34,7 @@ jobs:
           git init && \
           \
           echo "Init credentials" && \
-          git config user.name "Jagger's Action" && \
+          git config user.name "634750802" && \
           git config user.email "634750802@qq.com" && \
           git config user.token "{{ secrets.TOKEN }}" && \
           \
