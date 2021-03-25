@@ -27,18 +27,21 @@ jobs:
           npm install
           npm run build
 
-      - name: Config Git
-        uses: OleksiyRudenko/gha-git-credentials@v2
-        with:
-          email: 634750802@qq.com
-          name: Jagger's Action
-          token: secrets.TOKEN
-
       - name: Deploy
         working-directory: dist
         run: |
+          echo "Init git"
           git init
+
+          echo "Init credentials"
+          git config user.name "Jagger's Action"
+          git config user.email "634750802@qq.com"
+          git config user.token "{{ secrets.TOKEN }}"
+
+          echo "Prepare git"
           git add .
           git commit -m "deploy web"
           git remote add origin https://github.com/634750802/TypeTrain
+
+          echo "Force push to gh-page"
           git push -f remote origin:gh-page
