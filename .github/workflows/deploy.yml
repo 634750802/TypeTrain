@@ -44,4 +44,4 @@ jobs:
           git remote add origin https://github.com/634750802/TypeTrain && \
           \
           echo "Force push to gh-page" && \
-          git push -f remote origin:gh-page 
+          git push -f origin master:gh-page 
