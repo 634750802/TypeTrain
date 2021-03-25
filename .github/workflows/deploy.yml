@@ -32,6 +32,7 @@ jobs:
         with:
           email: 634750802@qq.com
           name: Jagger's Action
+          token: secrets.TOKEN
 
       - name: Deploy
         working-directory: dist
