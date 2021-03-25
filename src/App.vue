@@ -57,7 +57,7 @@
       })
 
       const currentWord = computed(() => state.words[state.cursor.w])
-      const currentChar = computed(() => currentWord.value[state.cursor.c])
+      const currentChar = computed(() => currentWord?.value[state.cursor.c])
 
       const set = (text) => {
         state.words = text.split('\n').flatMap(line => {
