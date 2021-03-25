@@ -29,6 +29,8 @@ jobs:
 
       - name: Deploy
         working-directory: dist
+        env: 
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
         run: |
           echo "Init git" && \
           git init && \
@@ -36,12 +38,11 @@ jobs:
           echo "Init credentials" && \
           git config user.name "634750802" && \
           git config user.email "634750802@qq.com" && \
-          git config user.token "{{ secrets.TOKEN }}" && \
           \
           echo "Prepare git" && \
           git add . && \
           git commit -m "deploy web" && \
-          git remote add origin git@github.com:634750802/TypeTrain.git && \
+          git remote add origin https://$GITHUB_TOKEN$@github.com/634750802/TypeTrain.git && \
           \
           echo "Force push to gh-page" && \
           git push -f origin master:gh-page 
