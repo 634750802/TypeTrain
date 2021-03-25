@@ -69,7 +69,8 @@
             return []
           }
         })
-        // console.log('New content', state.words)
+        state.cursor.c = 0
+        state.cursor.w = 0
       }
 
       const move = (next) => {
@@ -90,7 +91,6 @@
 
       const checkDone = () => {
         const { words, cursor } = state
-        // console.log('check done', cursor.w, cursor.c)
         if (cursor.w === words.length - 1 && cursor.c === currentWord.value.length) {
           done()
         } else if (cursor.w === words.length) {
@@ -100,15 +100,14 @@
 
       const done = () => {
         const lines = chance.integer({
-          max: 12
+          min: 5,
+          max: 12,
         })
         let content = ''
         for (let i = 0; i < lines; i++) {
           content += chance.paragraph() + '\n'
         }
         set(content)
-        state.cursor.c = 0
-        state.cursor.w = 0
       }
 
       onMounted(() => set('Hello world!\n'))
@@ -116,7 +115,6 @@
       return {
         state,
         onKeypress ({ key }) {
-          // console.log(key, currentWord.value, currentChar.value)
           if (currentChar.value === key) {
             move(false)
           } else if (key === 'Enter') {
