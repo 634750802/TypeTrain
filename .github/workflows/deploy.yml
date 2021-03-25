@@ -16,14 +16,21 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.1.5
 
-      - name: Build
-        run: npm run build
+      - name: Cache
+        uses: actions/cache@v2.1.4
+        with:
+          path: node_modules
+          key: default
 
-      - name: Run a multi-line script
+      - name: Build
+        run: |
+          npm install
+          npm run build
+      - name: Deploy
         run: |
           cd dist
           git init
           git add .
           git commit -m "deploy web"
           git remote add origin https://github.com/634750802/TypeTrain
-          git push -f origin gh-page
+          git push -f remote origin:gh-page
