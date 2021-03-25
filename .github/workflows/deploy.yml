@@ -41,7 +41,7 @@ jobs:
           echo "Prepare git" && \
           git add . && \
           git commit -m "deploy web" && \
-          git remote add origin https://github.com/634750802/TypeTrain.git && \
+          git remote add origin git@github.com:634750802/TypeTrain.git && \
           \
           echo "Force push to gh-page" && \
           git push -f origin master:gh-page 
